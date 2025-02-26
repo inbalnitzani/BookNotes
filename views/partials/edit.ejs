@@ -1,0 +1,83 @@
+<div class="mb-3 d-flex justify-content-between align-items-center">
+    <label for="title" class="me-2">Title:</label>
+    <input id="title" type="text" class="form-control w-75" name="title" value="<%= book.title %>"  required>
+</div>
+
+<div class="mb-3 d-flex justify-content-between align-items-center">
+    <label for="cover" class="me-2">Cover URL:</label>
+    <input id="cover" type="text" class="form-control w-75" name="cover" value="<%= book.img_url %>" required>
+</div>
+
+<div class="mb-3 d-flex justify-content-between align-items-center">
+    <label for="startDate" class="me-2">Started Date:</label>
+    <input id="startDate" type="date" class="form-control w-75" name="startDate"
+    value="<%= book.start_date ? book.start_date.toISOString().split('T')[0] : '' %>" required>
+</div>
+
+<div class="mb-3 d-flex justify-content-between align-items-center">
+    <label for="endDate" class="me-2">Finished Date:</label>
+    <input id="endDate" type="date" class="form-control w-75" name="endDate"
+    value="<%= book.end_date ? book.end_date.toISOString().split('T')[0] : '' %>" required>
+</div>
+
+<div class="mb-3 d-flex justify-content-between align-items-center">
+    <label for="notes" class="me-2"> Your Notes:</label>
+    <textarea id="notes" class="form-control w-75" name="notes" required><%= book.description %></textarea>
+</div>
+
+<div class="mb-3 d-flex align-items-center">
+    <label class="me-5 ">Rating:</label>
+    <div class="d-flex ms-5">
+        <input type="hidden" name="stars" id="stars" value="0" required>
+        <span class="fa fa-star <%= book.stars >= 1 ? 'gold' : 'gray' %>"></span>
+        <span class="fa fa-star <%= book.stars >= 2 ? 'gold' : 'gray' %>"></span>
+        <span class="fa fa-star <%= book.stars >= 3 ? 'gold' : 'gray' %>"></span>
+        <span class="fa fa-star <%= book.stars >= 4 ? 'gold' : 'gray' %>"></span>
+        <span class="fa fa-star <%= book.stars >= 5 ? 'gold' : 'gray' %>"></span>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const stars = document.querySelectorAll('.fa-star');
+      const starInput = document.getElementById('stars');
+      let selectedRating = 0; // Store the selected rating
+  
+      
+      stars.forEach((star, index) => {
+          star.addEventListener('mouseover', () => {
+              // Highlight all stars up to the hovered one
+              stars.forEach((s, i) => {
+                  s.style.color = i <= index ? 'gold' : 'gray';
+              });
+          });
+  
+          star.addEventListener('mouseleave', () => {
+              // Reset to selected rating when hover ends
+              stars.forEach((s, i) => {
+                  s.style.color = i < selectedRating ? 'gold' : 'gray';
+              });
+          });
+  
+          star.addEventListener('click', () => {
+              selectedRating = index + 1; // Save the rating
+              starInput.value = selectedRating; // Store the rating in the hidden input
+              stars.forEach((s, i) => {
+                  s.style.color = i < selectedRating ? 'gold' : 'gray';
+              });
+          });
+      });
+  
+      document.getElementById("bookForm").addEventListener("submit", function(event) {
+          const startDate = new Date(document.getElementById('startDate').value);
+          const endDate = new Date(document.getElementById('endDate').value);
+  
+          if (endDate < startDate) {
+              alert("End date can't be before start date.");
+              event.preventDefault(); // Prevent the form from submitting
+          }
+      });
+  });
+  
+  </script>
+  
