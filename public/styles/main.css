@@ -1,0 +1,70 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  min-height: 95vh;
+  background-color: #e4e9fd !important;
+  background-image: -webkit-linear-gradient(65deg, #e383cb 50%, #fde4fa 50%) !important;
+  min-height: 1000px !important;
+  font-family: "helvetica neue" !important;
+}
+main {
+  text-align: center;
+  flex: 1 0 auto;
+}
+h1 {
+  color: rgb(175, 12, 47);
+  padding: 10px;
+}
+
+footer {
+  flex: 0 0 auto;
+  color: rgb(175, 12, 47);
+  text-align: center;
+}
+
+.sigmar-regular {
+  font-family: "Sigmar", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.star{
+  width: 25px;
+  height: 25px;
+}
+
+.card{
+  padding: 15px; 
+}
+
+.rating {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.fa-star {
+  font-size: 24px;
+  color: gray; /* Default color */
+  transition: color 0.3s ease;
+}
+
+.btn-outline-primary{
+  --bs-btn-border-color: #e383cb;
+  --bs-btn-color: #e383cb;
+  --bs-btn-hover-bg:  #e383cb;
+  --bs-btn-hover-border-color:  #e383cb;
+  --bs-btn-active-bg:  #e383cb;
+  --bs-btn-active-border-color:var(--bs-btn-active-bg);
+  --bs-btn-disabled-color:var(--bs-btn-active-bg);
+  --bs-btn-disabled-border-color:var(--bs-btn-active-bg);
+}
+
+.gold {
+  color: gold;
+}
+
+.gray {
+  color: gray;
+}
