@@ -110,20 +110,6 @@ app.post("/update", async (req, res) => {
     }
 });
 
-
-/**app.post("/edit", async(req, res) => {
-  const id = req.body.updatedItemId;
-  const title = req.body.updatedItemTitle;
-
-  try{
-    await db.query(
-      "UPDATE list SET title = ($1) WHERE id = $2",[title,id]
-    );
-    res.redirect("/");
-  } catch(err){
-    console.log(err);
-  }
-}); */
 app.post("/edit", async (req, res) => {
     const id = req.body.editBookById;
 
